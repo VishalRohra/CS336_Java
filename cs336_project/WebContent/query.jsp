@@ -55,15 +55,15 @@
 			out.print("</td>");
 			//make a column
 			out.print("<td>");
-			out.print("change_in_crime");
+			out.print("crime_grade");
 			out.print("</td>");
 			//make a column
 			out.print("<td>");
-			out.print("change_in_unemployment");
+			out.print("unemployment_grade");
 			out.print("</td>");
 			//make a column
 			out.print("<td>");
-			out.print("change_in_gsp_per_capita");
+			out.print("economy_grade");
 			out.print("</td>");
 			//make a column
 			out.print("<td>");
@@ -90,15 +90,15 @@
 				out.print("</td>");
 				out.print("<td>");
 				//Print out current crime
-				out.print(result.getString("change_in_crime"));
+				out.print(result.getString("crime_grade"));
 				out.print("</td>");
 				out.print("<td>");
 				//Print out current gsp
-				out.print(result.getString("change_in_unemployment"));
+				out.print(result.getString("unemployment_grade"));
 				out.print("</td>");
 				out.print("<td>");
 				//Print out current unemployment
-				out.print(result.getString("change_in_gsp_per_capita"));
+				out.print(result.getString("economy_grade"));
 				out.print("</td>");
 				out.print("<td>");
 				//Print out current gpa
