@@ -17,6 +17,25 @@ Select a president<br>
 			<option value="Jimmy Carter">Jimmy Carter</option>
 			<option value="Ronald Reagan">Ronald Reagan</option>
 			<option value="George H. W. Bush">George H. W. Bush</option>
+			<option value="Bill Clinton">Bill Clinton</option>
+			<option value="George W. Bush">George W. Bush</option>
+			<option value="Barack Obama">Barack Obama</option>
+		</select>&nbsp;<br> <input type="submit" value="submit">
+	</form>
+<br>
+Select a year<br>
+	<form method="query" action="query.jsp">
+		<select name="year" size=1>
+			<option value="1976">1976</option>
+			<option value="1980">1980</option>
+			<option value="1984">1984</option>
+			<option value="1988">1988</option>
+			<option value="1992">1992</option>
+			<option value="1996">1996</option>
+			<option value="1996">1996</option>
+			<option value="2000">2000</option>
+			<option value="2004">2004</option>
+			<option value="2008">2008</option>
 		</select>&nbsp;<br> <input type="submit" value="submit">
 	</form>
 <br>
