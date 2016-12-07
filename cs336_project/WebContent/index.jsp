@@ -10,6 +10,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <link rel="stylesheet" href="sol.css">
 <script type="text/javascript" src="sol.js"></script>
+<!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 <script type="text/javascript">
     $(function() {
         // initialize sol
@@ -21,20 +23,25 @@
         $('#economic').searchableOptionList();
     });
 </script>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-   var input = document.getElementById('president');
-   if (localStorage['president']) { // if job is set
-       input.value = localStorage['president']; // set the value
-   }
-   input.onchange = function () {
-        localStorage['president'] = this.value; // change localStorage on change
-    }
-});
-</script>
 <title>Presidential Report Card</title>
 </head>
 <body>
+<div class="container">
+		
+		<header class="jumbotron hero-spacer">
+		<div class="row">
+            
+            <!-- /.col-md-8 -->
+            <div class="col-md-6">
+                <h1><font size="7">Presidential Report Card!</font></h1>
+                <p align="justify"><font size="4">Everytime you vote, it has repercussions. We grade those repercussions in a simple way, and help you understand whether you could have done better with the choice you made. Over the past 4 decades, we have graded the performace of all presidential terms based on rate of change in crime, uneployment and economic data in relationto other states. Go. Now play around.</font></p>
+                <!--<a class="btn btn-primary btn-lg" href="#">Call to Action!</a>-->
+            </div>
+            <!-- /.col-md-4 -->
+        </div>
+</div>        </header>
+
+
 Select a president
 <br><br>
 	<form method="query" action="query.jsp">
@@ -149,7 +156,8 @@ Select a president
 	</form>
 	<br>
 	<form method="static" action="static.jsp">
-		<input type="submit" value="Some of our crazy queries!">
+		<br>Show me some your crazy queries<br><br>
+		<input type="submit" value="GO!">
 	</form>
 
 </body>
