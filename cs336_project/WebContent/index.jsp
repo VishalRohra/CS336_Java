@@ -29,7 +29,6 @@ Select a president<br>
 			<option value="1988">1988</option>
 			<option value="1992">1992</option>
 			<option value="1996">1996</option>
-			<option value="1996">1996</option>
 			<option value="2000">2000</option>
 			<option value="2004">2004</option>
 			<option value="2008">2008</option>

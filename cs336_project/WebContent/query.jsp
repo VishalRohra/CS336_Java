@@ -22,26 +22,141 @@
 
 			//Create a connection to your DB
 			Connection con = DriverManager.getConnection(url, "orlando_santoni", "Supermario64");
-			PreparedStatement pstm = con.prepareStatement("SELECT Grades.year, president, crime_grade, unemployment_grade, economy_grade, Grades.state, Grades.gpa"
-			 											+ "FROM Report_Card INNER JOIN Grades ON Grades.year=Report_Card.year_elected AND Grades.state=Report_Card.state AND Grades.gpa=Report_Card.gpa" 
-			 											+ "WHERE (president in (?)) AND (year in (?)) AND (Grades.state in (?))");
+	
 			//Create a SQL statement
 			Statement stmt = con.createStatement();
 			//Get the combobox from the HelloWorld.jsp
 			String[] presidents = request.getParameterValues("president");
-			Array arr_pres = con.createArrayOf("VARCHAR", presidents);
 			String[] years = request.getParameterValues("year");
-			Array arr_years = con.createArrayOf("VARCHAR", years);
 			String[] states = request.getParameterValues("state");
-			Array arr_states = con.createArrayOf("VARCHAR", states);
+			String[] crimeGrades = request.getParameterValues("crime_grade");
+			String[] unemploymentGrades = request.getParameterValues("unemployment_grade");
+			String[] economicGrades = request.getParameterValues("economic_grade");
+
+			String whereStatement = "WHERE";
+
+			//year parameter
+			whereStatement = whereStatement + " (Grades.year in ";
+			String yearStr = "(";
+			for(int i = 0; i < years.length; i++){
+		
+				if(i != presidents.length-1){
+					yearStr = yearStr + years[i] + ",";
+				}
+				else {
+					yearStr = yearStr + years[i];
+				}
+		
+			}
+			
+			yearStr = yearStr + ")";
+			System.out.println(yearStr);
+			whereStatement = whereStatement + yearStr;
+			whereStatement = whereStatement + ") AND ";
+
+			//President parameter
+			whereStatement = whereStatement + "(president in ";
+			String presidentStr = "(";
+			for(int i = 0; i < presidents.length; i++){
+		
+				if(i != presidents.length-1){
+					presidentStr = presidentStr + "\"" + presidents[i] + "\",";
+				}
+				else {
+					presidentStr = presidentStr + "\"" + presidents[i] + "\"";
+				}
+		
+			}
+			
+			presidentStr = presidentStr + ")";
+			System.out.println(presidentStr);
+			whereStatement = whereStatement + presidentStr;
+			whereStatement = whereStatement + ") AND "; 
+			
+			//state parameter
+			whereStatement = whereStatement + "(Grades.state in ";
+			String stateStr = "(";
+			for(int i = 0; i < states.length; i++){
+		
+				if(i != states.length-1){
+					stateStr = stateStr + "\"" + states[i] + "\",";
+				}
+				else {
+					stateStr = stateStr + "\"" + states[i] + "\"";
+				}
+		
+			}
+			
+			stateStr = stateStr + ")";
+			System.out.println(stateStr);
+			whereStatement = whereStatement + stateStr;
+			whereStatement = whereStatement + ") AND "; 
+			
+			//crime_grade parameter
+			whereStatement = whereStatement + "(crime_grade in ";
+			String crimeGradeStr = "(";
+			for(int i = 0; i < crimeGrades.length; i++){
+		
+				if(i != crimeGrades.length-1){
+					crimeGradeStr = crimeGradeStr + "\"" + crimeGrades[i] + "\",";
+				}
+				else {
+					crimeGradeStr = crimeGradeStr + "\"" + crimeGrades[i] + "\"";
+				}
+		
+			}
+			
+			crimeGradeStr = crimeGradeStr + ")";
+			System.out.println(crimeGradeStr);
+			whereStatement = whereStatement + crimeGradeStr;
+			whereStatement = whereStatement + ") AND "; 
+			
+			//unemployment_grade parameter
+			whereStatement = whereStatement + "(unemployment_grade in ";
+			String unemploymentGradeStr = "(";
+			for(int i = 0; i < unemploymentGrades.length; i++){
+		
+				if(i != unemploymentGrades.length-1){
+					unemploymentGradeStr = unemploymentGradeStr + "\"" + unemploymentGrades[i] + "\",";
+				}
+				else {
+					unemploymentGradeStr = unemploymentGradeStr + "\"" + unemploymentGrades[i] + "\"";
+				}
+		
+			}
+			
+			unemploymentGradeStr = unemploymentGradeStr + ")";
+			System.out.println(unemploymentGradeStr);
+			whereStatement = whereStatement + unemploymentGradeStr;
+			whereStatement = whereStatement + ") AND "; 
+			
+			//economy_grade parameter
+			whereStatement = whereStatement + "(economy_grade in ";
+			String economyGradeStr = "(";
+			for(int i = 0; i < economicGrades.length; i++){
+		
+				if(i != economicGrades.length-1){
+					economyGradeStr = economyGradeStr + "\"" + economicGrades[i] + "\",";
+				}
+				else {
+					economyGradeStr = economyGradeStr + "\"" + economicGrades[i] + "\"";
+				}
+		
+			}
+			
+			economyGradeStr = economyGradeStr + ")";
+			System.out.println(economyGradeStr);
+			whereStatement = whereStatement + economyGradeStr;
+			whereStatement = whereStatement + ")"; 
+			
+			System.out.println(whereStatement);
+			
 			//Make a SELECT query from the grades and report_card tables with the parameters selected in HelloWorld.jsp
-			pstm.setArray(1, arr_pres);
-			pstm.setArray(2, arr_years);
-			pstm.setArray(3, arr_states);
-			//String str = "SELECT Grades.year, president, crime_grade, unemployment_grade, economy_grade, Grades.state, Grades.gpa FROM Report_Card INNER JOIN Grades ON Grades.year=Report_Card.year_elected AND Grades.state=Report_Card.state AND Grades.gpa=Report_Card.gpa WHERE (president=" + "\"" + president + "\") AND (year=" + year + ")" + " AND (Grades.state=" + "\"" + state + "\")";
+			String str = "SELECT Grades.year, president, Grades.state, crime_grade, unemployment_grade, economy_grade, Grades.gpa FROM Report_Card INNER JOIN Grades ON Grades.year=Report_Card.year_elected AND Grades.state=Report_Card.state AND Grades.gpa=Report_Card.gpa " + whereStatement;
+			System.out.println(str);
 
 			//Run the query against the database.
-			ResultSet result = pstm.executeQuery();
+			ResultSet result = stmt.executeQuery(str);
 
 			//Make an HTML table to show the results in:
 			out.print("<table>");
