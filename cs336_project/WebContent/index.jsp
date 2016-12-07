@@ -147,7 +147,10 @@ Select a president
 			<option value="F">F</option>
 		</select>&nbsp;<br> <input type="submit" value="submit">
 	</form>
-<br>
+	<br>
+	<form method="static" action="static.jsp">
+		<input type="submit" value="Some of our crazy queries!">
+	</form>
 
 </body>
 </html>
