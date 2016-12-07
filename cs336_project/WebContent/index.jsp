@@ -7,13 +7,38 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="sol.css">
+<script type="text/javascript" src="sol.js"></script>
+<script type="text/javascript">
+    $(function() {
+        // initialize sol
+        $('#president').searchableOptionList();
+        $('#year').searchableOptionList();
+        $('#state').searchableOptionList();
+        $('#crime').searchableOptionList();
+        $('#unemployment').searchableOptionList();
+        $('#economic').searchableOptionList();
+    });
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+   var input = document.getElementById('president');
+   if (localStorage['president']) { // if job is set
+       input.value = localStorage['president']; // set the value
+   }
+   input.onchange = function () {
+        localStorage['president'] = this.value; // change localStorage on change
+    }
+});
+</script>
 <title>Presidential Report Card</title>
 </head>
 <body>
-
-Select a president<br>
+Select a president
+<br><br>
 	<form method="query" action="query.jsp">
-		<select multiple name="president" size=1>
+		<select id="president" name="president" multiple="multiple">
 			<option value="Jimmy Carter">Jimmy Carter</option>
 			<option value="Ronald Reagan">Ronald Reagan</option>
 			<option value="George H. W. Bush">George H. W. Bush</option>
@@ -22,7 +47,8 @@ Select a president<br>
 			<option value="Barack Obama">Barack Obama</option>
 		</select>&nbsp;
 		<br>Select year<br>
-		<select multiple name="year" size=1>
+		<br>
+		<select id="year" name="year" multiple="multiple">
 			<option value="1976">1976</option>
 			<option value="1980">1980</option>
 			<option value="1984">1984</option>
@@ -32,9 +58,10 @@ Select a president<br>
 			<option value="2000">2000</option>
 			<option value="2004">2004</option>
 			<option value="2008">2008</option>
-		</select>&nbsp;
+		</select>
 		<br>Select state<br>
-		<select multiple name="state" size=1>
+		<br>
+		<select id="state" name="state" multiple="multiple">
 			<option value="Alabama">Alabama</option>
 			<option value="Alaska">Alaska</option>
 			<option value="Arizona">Arizona</option>
@@ -87,7 +114,8 @@ Select a president<br>
 			<option value="Wyoming">Wyoming</option>
 		</select>&nbsp;
 		<br>Select Grade for Crime<br>
-		<select multiple name="crime_grade" size=1>
+		<br>
+		<select id="crime" name="crime_grade" multiple="multiple">
 			<option value="A">A</option>
 			<option value="B+">B+</option>
 			<option value="B">B</option>
@@ -97,7 +125,8 @@ Select a president<br>
 			<option value="F">F</option>
 		</select>&nbsp;
 		<br>Select Grade for Unemployment<br>
-		<select multiple name="unemployment_grade" size=1>
+		<br>
+		<select id="unemployment" name="unemployment_grade" multiple="multiple">
 			<option value="A">A</option>
 			<option value="B+">B+</option>
 			<option value="B">B</option>
@@ -107,7 +136,8 @@ Select a president<br>
 			<option value="F">F</option>
 		</select>&nbsp;
 		<br>Select Grade for the Economy<br>
-		<select multiple name="economic_grade" size=1>
+		<br>
+		<select id="economic" name="economic_grade" multiple="multiple">
 			<option value="A">A</option>
 			<option value="B+">B+</option>
 			<option value="B">B</option>

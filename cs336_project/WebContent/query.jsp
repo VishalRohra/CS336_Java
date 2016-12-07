@@ -7,6 +7,41 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
+<script type="text/javascript">
+$(document).ready( function () {
+    $('#result').DataTable({
+    	"sPaginationType": "full_numbers",
+        "bJQueryUI": true
+    });
+} );</script>
+<!--<link href="media/dataTables/demo_page.css" 
+           rel="stylesheet" type="text/css" />
+        <link href="media/dataTables/demo_table.css" 
+           rel="stylesheet" type="text/css" />
+        <link href="media/dataTables/demo_table_jui.css" 
+           rel="stylesheet" type="text/css" />
+        <link href="media/themes/base/jquery-ui.css" 
+          rel="stylesheet" type="text/css" media="all" />
+        <link href="media/themes/smoothness/jquery-ui-1.7.2.custom.css" 
+          rel="stylesheet" type="text/css" media="all" />
+        <script src="scripts/jquery-1.4.4.min.js" 
+          type="text/javascript"></script>
+        <script src="scripts/jquery.dataTables.min.js" 
+          type="text/javascript"></script>
+        <script type="text/javascript">
+        $(document).ready(function () {
+            $("#companies").dataTable({
+                "bServerSide": true,
+                "sAjaxSource": "/JQueryDataTables/CompanyAjaxDataSource",
+                "bProcessing": true,
+                "sPaginationType": "full_numbers",
+                "bJQueryUI": true
+            });
+        });*/
+        </script>-->
 <title>Your results!</title>
 </head>
 <body>
@@ -40,7 +75,7 @@
 			String yearStr = "(";
 			for(int i = 0; i < years.length; i++){
 		
-				if(i != presidents.length-1){
+				if(i != years.length-1){
 					yearStr = yearStr + years[i] + ",";
 				}
 				else {
@@ -159,43 +194,47 @@
 			ResultSet result = stmt.executeQuery(str);
 
 			//Make an HTML table to show the results in:
-			out.print("<table>");
+			//out.print("<div id=\"resultDiv\">");
+			out.print("<table id=\"result\">");
 
+			out.print("<thead>");
 			//make a row
 			out.print("<tr>");
 			//make a column
-			out.print("<td>");
+			out.print("<th>");
 			//print out column header
 			out.print("year");
-			out.print("</td>");
+			out.print("</th>");
 			//make a column
-			out.print("<td>");
+			out.print("<th>");
 			out.print("president");
-			out.print("</td>");
+			out.print("</th>");
 			//make a column
-			out.print("<td>");
+			out.print("<th>");
 			out.print("state");
-			out.print("</td>");
+			out.print("</th>");
 			//make a column
-			out.print("<td>");
+			out.print("<th>");
 			out.print("crime_grade");
-			out.print("</td>");
+			out.print("</th>");
 			//make a column
-			out.print("<td>");
+			out.print("<th>");
 			out.print("unemployment_grade");
-			out.print("</td>");
+			out.print("</th>");
 			//make a column
-			out.print("<td>");
+			out.print("<th>");
 			out.print("economy_grade");
-			out.print("</td>");
+			out.print("</th>");
 			//make a column
-			out.print("<td>");
+			out.print("<th>");
 			out.print("gpa");
-			out.print("</td>");
+			out.print("</th>");
 			out.print("</tr>");
-
+			out.print("</thead>");
+			out.print("<tbody>");
 			//parse out the results
 			while (result.next()) {
+			
 				//make a row
 				out.print("<tr>");
 				//make a column
@@ -228,16 +267,15 @@
 				out.print(result.getString("gpa"));
 				out.print("</td>");
 				out.print("</tr>");
-
 			}
+			out.print("</tbody>");
 			out.print("</table>");
-
+			//out.print("</div>");	
 			//close the connection.
 			con.close();
 
 		} catch (Exception e) {
 		}
 	%>
-
 </body>
 </html>
